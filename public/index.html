@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LocalCouncil</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="stylesheet" href="/style.css" />
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.0/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js"></script>
+</head>
+<body>
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <span class="sidebar-title">Chats</span>
+    <button id="newChatBtn" class="sidebar-new" title="New chat">+ New</button>
+  </div>
+  <ul id="chatList" class="chat-list"></ul>
+  <div class="sidebar-council-card" aria-label="Council routing">
+    <div class="council-card-title">Routing</div>
+    <div class="council-wrap">
+      <div class="council-controls">
+        <label class="compact-field">
+          <span>Mode</span>
+          <select id="modeSelect"></select>
+        </label>
+        <label class="toggle-field">
+          <input type="checkbox" id="fallbackToggle" />
+          Fallback routing
+        </label>
+      </div>
+      <div id="providerPanel" class="provider-panel" aria-label="Model health"></div>
+    </div>
+  </div>
+</aside>
+
+<div class="main-col">
+  <header>
+    <div class="wrap">
+      <h1 id="pageHeader">
+        <img src="/logo.svg" alt="" class="brand-logo" />
+        <span id="pageTitleText" class="brand-name">LocalCouncil</span>
+        <span id="pageSub" class="sub">Opus 4.7 / GPT-5.5 / you</span>
+      </h1>
+      <div class="header-actions">
+        <button id="settingsBtn" class="ghost" title="Settings">Settings</button>
+        <button id="clearBtn" class="ghost">Clear transcript</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="goal-bar">
+    <div class="wrap">
+      <span class="goal-label">Goal</span>
+      <input id="goalInput" type="text" placeholder="(no goal set - describe what this chat should accomplish)" />
+      <span id="goalSaved" class="goal-saved" aria-hidden="true">saved</span>
+      <button id="runArbiterBtn" class="arbiter-btn" title="If chat is empty: send the goal as a kickoff message. If populated: force arbiter synthesis on the current transcript.">Synthesize</button>
+      <button id="stopBtn" class="stop-btn" disabled title="Halt active chain + workers">Stop</button>
+    </div>
+  </div>
+
+  <main id="feed" aria-live="polite">
+    <div id="feedInner" class="feed-inner"></div>
+  </main>
+
+  <div id="status" class="status"></div>
+
+  <footer>
+    <div class="wrap">
+      <textarea id="input" placeholder="Type a message as user... (Enter to send, Shift+Enter for newline)"></textarea>
+      <div class="row">
+        <button id="sendBtn" class="primary">Send as user</button>
+        <div id="askButtons" class="ask-buttons"></div>
+        <button id="stopBtnFooter" class="stop-btn" disabled title="Halt active chain + workers">Stop</button>
+        <label class="auto">
+          <input type="checkbox" id="groupChatToggle" />
+          Group chat
+        </label>
+        <label class="setting">
+          Max turns
+          <input type="number" id="maxTurnsInput" min="1" max="100" step="1" value="50" />
+        </label>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<div id="settingsModalBackdrop" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="settingsModalTitle">
+  <div class="modal-card settings-card">
+    <header class="modal-header">
+      <h2 id="settingsModalTitle">Settings</h2>
+      <button id="settingsModalClose" class="modal-close" aria-label="Close">x</button>
+    </header>
+
+    <section class="settings-section">
+      <h3>Chat</h3>
+      <div class="settings-row">
+        <label for="settingsMode" class="settings-label">Conversation mode</label>
+        <select id="settingsMode" class="settings-select"></select>
+      </div>
+      <div class="settings-row">
+        <label for="settingsGroupChat" class="settings-label">Group chat</label>
+        <input type="checkbox" id="settingsGroupChat" class="settings-checkbox" />
+      </div>
+      <div class="settings-row">
+        <label for="settingsFallback" class="settings-label">Fallback routing when a provider is unavailable</label>
+        <input type="checkbox" id="settingsFallback" class="settings-checkbox" />
+      </div>
+      <div class="settings-row">
+        <label for="settingsMaxTurns" class="settings-label">Max turns per chain</label>
+        <input type="number" id="settingsMaxTurns" class="settings-number" min="1" max="100" step="1" />
+      </div>
+    </section>
+
+    <section class="settings-section">
+      <h3>Providers and personas</h3>
+      <div id="settingsProviders" class="settings-providers"></div>
+    </section>
+
+    <section class="settings-section">
+      <h3>Custom providers</h3>
+      <p class="settings-hint">Add other CLI tools (GLM, MiniMax, Kimi, anything that takes a prompt) or HTTP API endpoints. Custom providers join the chat alongside Opus and GPT. They do not run as workers yet.</p>
+      <div id="settingsCustomProviders" class="settings-custom-providers"></div>
+      <div id="settingsAddCustomProvider" class="settings-add-custom-provider"></div>
+    </section>
+
+    <section class="settings-section">
+      <h3>Stop rules</h3>
+      <div class="settings-row">
+        <label for="settingsRuntime" class="settings-label">Max runtime per chain, minutes</label>
+        <input type="number" id="settingsRuntime" class="settings-number" min="1" max="60" step="1" />
+      </div>
+      <div class="settings-row">
+        <label for="settingsAgreement" class="settings-label">Stop after agreement-like turns</label>
+        <input type="number" id="settingsAgreement" class="settings-number" min="0" max="10" step="1" />
+      </div>
+      <div class="settings-row">
+        <label for="settingsErrors" class="settings-label">Stop after provider errors</label>
+        <input type="number" id="settingsErrors" class="settings-number" min="1" max="10" step="1" />
+      </div>
+      <div class="settings-row">
+        <label for="settingsAutoArbitrate" class="settings-label">Run arbiter when stop rules fire</label>
+        <input type="checkbox" id="settingsAutoArbitrate" class="settings-checkbox" />
+      </div>
+    </section>
+
+    <section class="settings-section">
+      <h3>Voices</h3>
+      <p class="settings-hint">Pick a distinct voice for each role. Click <b>Test</b> to hear a sample. Selections persist in this browser.</p>
+      <div id="voicesPickers" class="voices-pickers"></div>
+      <div class="settings-actions">
+        <button id="voicesResetBtn" class="ghost">Reset voices to auto</button>
+      </div>
+    </section>
+
+    <section class="settings-section">
+      <h3>Speech</h3>
+      <div class="settings-row">
+        <label for="settingsRate" class="settings-label">Speech rate</label>
+        <div class="range-row">
+          <input type="range" id="settingsRate" min="0.5" max="2.0" step="0.05" value="1.0" />
+          <span id="settingsRateValue" class="range-value">1.00×</span>
+        </div>
+      </div>
+      <div class="settings-row">
+        <label for="settingsAutoSpeak" class="settings-label">Auto-speak new AI replies</label>
+        <input type="checkbox" id="settingsAutoSpeak" class="settings-checkbox" />
+      </div>
+    </section>
+
+    <footer class="modal-footer">
+      <button id="settingsDoneBtn" class="primary">Done</button>
+    </footer>
+  </div>
+</div>
+
+<aside id="tasksSidebar" class="tasks-sidebar hidden" aria-label="Council tasks">
+  <div id="tasksResizeHandle" class="tasks-resize-handle" title="Drag to resize"></div>
+  <div class="tasks-sidebar-header">
+    <h3>
+      <span class="tasks-title-text">Council tasks</span>
+      <span id="tasksCount" class="tasks-count">0</span>
+    </h3>
+    <button id="tasksToggleBtn" class="ghost" title="Collapse panel">Hide</button>
+  </div>
+  <ul id="tasksList" class="tasks-list"></ul>
+</aside>
+
+<script src="/app.js"></script>
+</body>
+</html>

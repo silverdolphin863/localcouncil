@@ -1,0 +1,14 @@
+{
+  "name": "localcouncil",
+  "version": "0.1.0",
+  "description": "Local provider-registry council chat with model health, fallback routing, conversation modes, stop rules, persona presets, and worker dispatch.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "ws": "^8.18.0"
+  }
+}

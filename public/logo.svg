@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- connecting lines (round-table edges) -->
+  <line x1="32" y1="14" x2="14" y2="46" stroke="#bcb5a3" stroke-width="2" stroke-linecap="round"/>
+  <line x1="32" y1="14" x2="50" y2="46" stroke="#bcb5a3" stroke-width="2" stroke-linecap="round"/>
+  <line x1="14" y1="46" x2="50" y2="46" stroke="#bcb5a3" stroke-width="2" stroke-linecap="round"/>
+  <!-- inner arbiter triangle (filled lighter) -->
+  <path d="M32 22 L21 42 L43 42 Z" fill="#ede0ff" stroke="#c9b1ee" stroke-width="1.2" stroke-linejoin="round"/>
+  <!-- central arbiter dot -->
+  <circle cx="32" cy="34" r="4" fill="#6d4ca8"/>
+  <!-- three participant nodes -->
+  <circle cx="32" cy="14" r="7" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+  <circle cx="14" cy="46" r="7" fill="#c2613a" stroke="#ffffff" stroke-width="1.5"/>
+  <circle cx="50" cy="46" r="7" fill="#15803d" stroke="#ffffff" stroke-width="1.5"/>
+</svg>

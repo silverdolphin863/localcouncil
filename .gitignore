@@ -1,0 +1,40 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local app state (user's conversations, settings, runtime data)
+data/
+workspaces/
+logs/
+
+# Server logs and runtime artifacts
+*.log
+*.pid
+*.lock
+nohup.out
+
+# Environment files (never commit secrets)
+.env
+.env.*
+!.env.example
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*~
+
+# QA / dev screenshots
+*-qa-*.png
+*-screenshot-*.png
+
+# Build / temp output
+dist/
+build/
+tmp/
+.tmp/
