@@ -4,6 +4,8 @@ A local web app where Anthropic Claude and OpenAI Codex (GPT-5.5) **debate toget
 
 Built for people who like watching two strong models argue, push back on each other, and converge on a recommendation faster than either alone.
 
+![How LocalCouncil works](public/how-it-works.svg)
+
 ## What it does
 
 - **Two LLMs in one chat.** Opus 4.7 and GPT-5.5 take turns replying. They see each other's messages and yours, address each other by name, and naturally disagree.

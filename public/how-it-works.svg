@@ -1,0 +1,213 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 640" role="img" aria-labelledby="title desc">
+  <title id="title">How LocalCouncil works</title>
+  <desc id="desc">A diagram showing a user, Opus, GPT, and an Arbiter exchanging messages around a council table. The user asks a question; Opus and GPT debate; the Arbiter consolidates the decision and returns it to the user. Custom providers like GLM, DeepSeek, and Kimi can be added from Settings and join the chat as additional participants. The cycle loops.</desc>
+
+  <defs>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="0" dy="2"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.18"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <radialGradient id="g-user" cx="0.35" cy="0.35"><stop offset="0" stop-color="#5485f5"/><stop offset="1" stop-color="#2247c4"/></radialGradient>
+    <radialGradient id="g-opus" cx="0.35" cy="0.35"><stop offset="0" stop-color="#d97847"/><stop offset="1" stop-color="#a14b22"/></radialGradient>
+    <radialGradient id="g-gpt"  cx="0.35" cy="0.35"><stop offset="0" stop-color="#2aaa57"/><stop offset="1" stop-color="#0d6b30"/></radialGradient>
+    <radialGradient id="g-arb"  cx="0.35" cy="0.35"><stop offset="0" stop-color="#8e6dca"/><stop offset="1" stop-color="#553a8c"/></radialGradient>
+
+    <radialGradient id="t-user" cx="0.3" cy="0.3"><stop offset="0" stop-color="#a7c0fc"/><stop offset="1" stop-color="#2563eb"/></radialGradient>
+    <radialGradient id="t-opus" cx="0.3" cy="0.3"><stop offset="0" stop-color="#f0b08a"/><stop offset="1" stop-color="#c2613a"/></radialGradient>
+    <radialGradient id="t-gpt"  cx="0.3" cy="0.3"><stop offset="0" stop-color="#80d49d"/><stop offset="1" stop-color="#15803d"/></radialGradient>
+    <radialGradient id="t-arb"  cx="0.3" cy="0.3"><stop offset="0" stop-color="#c5b1e9"/><stop offset="1" stop-color="#6d4ca8"/></radialGradient>
+    <radialGradient id="t-glm"  cx="0.3" cy="0.3"><stop offset="0" stop-color="#cccccc"/><stop offset="1" stop-color="#777777"/></radialGradient>
+
+    <!-- Node centers: User (450,500), Opus (170,250), GPT (730,250), Arbiter (450,130) -->
+    <path id="p-user-opus" d="M 450 500 L 170 250"/>
+    <path id="p-user-gpt"  d="M 450 500 L 730 250"/>
+    <path id="p-opus-gpt"  d="M 170 250 L 730 250"/>
+    <path id="p-gpt-opus"  d="M 730 250 L 170 250"/>
+    <path id="p-opus-arb"  d="M 170 250 L 450 130"/>
+    <path id="p-gpt-arb"   d="M 730 250 L 450 130"/>
+    <path id="p-arb-user"  d="M 450 130 L 450 500"/>
+    <!-- Custom provider GLM (used in optional "could be 3 voices" cameo): (75,160) -> opus area -->
+    <path id="p-glm-gpt"   d="M 90 200 L 730 250"/>
+  </defs>
+
+  <rect x="0" y="0" width="900" height="640" rx="16" fill="#fbfaf6"/>
+  <rect x="20" y="20" width="860" height="600" rx="14" fill="#ffffff" stroke="#ece8dc" stroke-width="1"/>
+
+  <g font-family="-apple-system, Segoe UI, system-ui, sans-serif">
+    <text x="450" y="62" text-anchor="middle" font-size="22" font-weight="700" fill="#15171c">LocalCouncil — how a turn works</text>
+    <text x="450" y="86" text-anchor="middle" font-size="13" fill="#6c6a5f">You ask. Two CLI-backed models debate. The arbiter consolidates. The decision comes back.</text>
+  </g>
+
+  <!-- main triangle connecting lines -->
+  <g stroke="#d8d2c2" stroke-width="1.5" fill="none" stroke-dasharray="4 6" opacity="0.7">
+    <line x1="450" y1="500" x2="170" y2="250"/>
+    <line x1="450" y1="500" x2="730" y2="250"/>
+    <line x1="170" y1="250" x2="730" y2="250"/>
+    <line x1="170" y1="250" x2="450" y2="130"/>
+    <line x1="730" y1="250" x2="450" y2="130"/>
+    <line x1="450" y1="130" x2="450" y2="500"/>
+  </g>
+
+  <!-- faint lines from custom-provider satellites to GPT/Opus (to show they join the chat) -->
+  <g stroke="#9a9788" stroke-width="1" fill="none" stroke-dasharray="2 5" opacity="0.45">
+    <line x1="90"  y1="200" x2="170" y2="250"/>
+    <line x1="90"  y1="320" x2="170" y2="250"/>
+    <line x1="810" y1="200" x2="730" y2="250"/>
+    <line x1="810" y1="320" x2="730" y2="250"/>
+  </g>
+
+  <!-- Opus (built-in, left) -->
+  <g filter="url(#soft)">
+    <circle cx="170" cy="250" r="46" fill="url(#g-opus)"/>
+    <text x="170" y="257" text-anchor="middle" font-family="-apple-system, Segoe UI, system-ui, sans-serif" font-weight="700" font-size="20" fill="#ffffff">A\</text>
+  </g>
+  <text x="170" y="322" text-anchor="middle" font-family="-apple-system, Segoe UI, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1f2430">Opus 4.7</text>
+  <text x="170" y="340" text-anchor="middle" font-family="-apple-system, Segoe UI, system-ui, sans-serif" font-size="11" fill="#8a8779">via Claude Code CLI</text>
+
+  <!-- GPT (built-in, right) -->
+  <g filter="url(#soft)">
+    <circle cx="730" cy="250" r="46" fill="url(#g-gpt)"/>
+    <circle cx="730" cy="250" r="20" fill="none" stroke="#ffffff" stroke-width="3"/>
+    <circle cx="730" cy="250" r="6"  fill="#ffffff"/>
+  </g>
+  <text x="730" y="322" text-anchor="middle" font-family="-apple-system, Segoe UI, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1f2430">GPT-5.5</text>
+  <text x="730" y="340" text-anchor="middle" font-family="-apple-system, Segoe UI, system-ui, sans-serif" font-size="11" fill="#8a8779">via Codex CLI</text>
+
+  <!-- Arbiter (top center) - fades in during consolidation phase -->
+  <g>
+    <g filter="url(#soft)">
+      <circle cx="450" cy="130" r="38" fill="url(#g-arb)" opacity="0">
+        <animate attributeName="opacity" values="0;0;0;1;1;1;0;0" keyTimes="0;0.45;0.55;0.62;0.78;0.85;0.95;1" dur="14s" repeatCount="indefinite"/>
+      </circle>
+      <text x="450" y="136" text-anchor="middle" font-family="-apple-system, Segoe UI, system-ui, sans-serif" font-weight="700" font-size="14" fill="#ffffff" opacity="0">
+        ARB
+        <animate attributeName="opacity" values="0;0;0;1;1;1;0;0" keyTimes="0;0.45;0.55;0.62;0.78;0.85;0.95;1" dur="14s" repeatCount="indefinite"/>
+      </text>
+    </g>
+    <text x="450" y="190" text-anchor="middle" font-family="-apple-system, Segoe UI, system-ui, sans-serif" font-size="13" font-weight="600" fill="#1f2430" opacity="0">
+      Arbiter
+      <animate attributeName="opacity" values="0;0;0;1;1;1;0;0" keyTimes="0;0.45;0.55;0.62;0.78;0.85;0.95;1" dur="14s" repeatCount="indefinite"/>
+    </text>
+  </g>
+
+  <!-- User (bottom) -->
+  <g filter="url(#soft)">
+    <circle cx="450" cy="500" r="46" fill="url(#g-user)"/>
+    <circle cx="450" cy="488" r="11" fill="#ffffff"/>
+    <path d="M 430 524 Q 450 502 470 524 Z" fill="#ffffff"/>
+  </g>
+  <text x="450" y="572" text-anchor="middle" font-family="-apple-system, Segoe UI, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1f2430">You</text>
+
+  <!-- CUSTOM PROVIDER SATELLITES (dashed, ghosted) -->
+  <!-- Top-left: GLM -->
+  <g>
+    <circle cx="90" cy="200" r="30" fill="#ffffff" stroke="#9a9788" stroke-width="1.5" stroke-dasharray="3 4" opacity="0.85"/>
+    <text x="90" y="205" text-anchor="middle" font-family="-apple-system, Segoe UI, system-ui, sans-serif" font-size="11" font-weight="700" fill="#6c6a5f">GLM</text>
+  </g>
+  <!-- Bottom-left: Kimi -->
+  <g>
+    <circle cx="90" cy="320" r="30" fill="#ffffff" stroke="#9a9788" stroke-width="1.5" stroke-dasharray="3 4" opacity="0.85"/>
+    <text x="90" y="325" text-anchor="middle" font-family="-apple-system, Segoe UI, system-ui, sans-serif" font-size="11" font-weight="700" fill="#6c6a5f">Kimi</text>
+  </g>
+  <!-- Top-right: DeepSeek -->
+  <g>
+    <circle cx="810" cy="200" r="30" fill="#ffffff" stroke="#9a9788" stroke-width="1.5" stroke-dasharray="3 4" opacity="0.85"/>
+    <text x="810" y="205" text-anchor="middle" font-family="-apple-system, Segoe UI, system-ui, sans-serif" font-size="9" font-weight="700" fill="#6c6a5f">DeepSeek</text>
+  </g>
+  <!-- Bottom-right: + your CLI / API -->
+  <g>
+    <circle cx="810" cy="320" r="30" fill="#ffffff" stroke="#9a9788" stroke-width="1.5" stroke-dasharray="3 4" opacity="0.85"/>
+    <text x="810" y="320" text-anchor="middle" font-family="-apple-system, Segoe UI, system-ui, sans-serif" font-size="18" font-weight="700" fill="#6c6a5f">+</text>
+    <text x="810" y="335" text-anchor="middle" font-family="-apple-system, Segoe UI, system-ui, sans-serif" font-size="7" fill="#8a8779">your CLI</text>
+  </g>
+
+  <!-- callout label for the custom-provider ring -->
+  <g font-family="-apple-system, Segoe UI, system-ui, sans-serif" fill="#6c6a5f">
+    <text x="90" y="380" text-anchor="middle" font-size="10.5" font-weight="600">custom providers</text>
+    <text x="90" y="394" text-anchor="middle" font-size="10">added in Settings</text>
+    <text x="810" y="380" text-anchor="middle" font-size="10.5" font-weight="600">custom providers</text>
+    <text x="810" y="394" text-anchor="middle" font-size="10">added in Settings</text>
+  </g>
+
+  <!-- phase labels -->
+  <g font-family="-apple-system, Segoe UI, system-ui, sans-serif" font-size="12" fill="#6d4ca8" font-weight="600" text-anchor="middle">
+    <text x="450" y="410" opacity="0">
+      1. you ask
+      <animate attributeName="opacity" values="0;1;1;0;0;0;0;0" keyTimes="0;0.05;0.2;0.27;0.3;0.7;0.95;1" dur="14s" repeatCount="indefinite"/>
+    </text>
+    <text x="450" y="410" opacity="0">
+      2. the models debate
+      <animate attributeName="opacity" values="0;0;0;0;1;1;0;0" keyTimes="0;0.27;0.3;0.31;0.34;0.55;0.62;1" dur="14s" repeatCount="indefinite"/>
+    </text>
+    <text x="450" y="410" opacity="0">
+      3. arbiter consolidates
+      <animate attributeName="opacity" values="0;0;0;0;0;0;1;1;0" keyTimes="0;0.55;0.6;0.61;0.62;0.625;0.63;0.85;0.95" dur="14s" repeatCount="indefinite"/>
+    </text>
+    <text x="450" y="410" opacity="0">
+      4. decision returns
+      <animate attributeName="opacity" values="0;0;0;0;0;0;0;0;1;1;0" keyTimes="0;0.05;0.1;0.15;0.2;0.6;0.7;0.85;0.9;0.97;1" dur="14s" repeatCount="indefinite"/>
+    </text>
+  </g>
+
+  <!-- ANIMATED MESSAGE TOKENS -->
+  <circle r="9" fill="url(#t-user)" opacity="0">
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.02;0.18;0.22" dur="14s" repeatCount="indefinite"/>
+    <animateMotion dur="14s" repeatCount="indefinite" keyTimes="0;0.02;0.18;1" keyPoints="0;0;1;1" calcMode="linear">
+      <mpath href="#p-user-opus"/>
+    </animateMotion>
+  </circle>
+  <circle r="9" fill="url(#t-user)" opacity="0">
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.21;0.25" dur="14s" repeatCount="indefinite"/>
+    <animateMotion dur="14s" repeatCount="indefinite" keyTimes="0;0.05;0.21;1" keyPoints="0;0;1;1" calcMode="linear">
+      <mpath href="#p-user-gpt"/>
+    </animateMotion>
+  </circle>
+
+  <circle r="9" fill="url(#t-opus)" opacity="0">
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.3;0.38;0.42" dur="14s" repeatCount="indefinite"/>
+    <animateMotion dur="14s" repeatCount="indefinite" keyTimes="0;0.3;0.38;1" keyPoints="0;0;1;1" calcMode="linear">
+      <mpath href="#p-opus-gpt"/>
+    </animateMotion>
+  </circle>
+  <circle r="9" fill="url(#t-gpt)" opacity="0">
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.42;0.5;0.54" dur="14s" repeatCount="indefinite"/>
+    <animateMotion dur="14s" repeatCount="indefinite" keyTimes="0;0.42;0.5;1" keyPoints="0;0;1;1" calcMode="linear">
+      <mpath href="#p-gpt-opus"/>
+    </animateMotion>
+  </circle>
+
+  <!-- Cameo: a GLM token joins the debate during phase 2 -->
+  <circle r="8" fill="url(#t-glm)" opacity="0">
+    <animate attributeName="opacity" values="0;0;0;0.85;0.85;0" keyTimes="0;0.34;0.36;0.42;0.5;0.54" dur="14s" repeatCount="indefinite"/>
+    <animateMotion dur="14s" repeatCount="indefinite" keyTimes="0;0.36;0.5;1" keyPoints="0;0;1;1" calcMode="linear">
+      <mpath href="#p-glm-gpt"/>
+    </animateMotion>
+  </circle>
+
+  <circle r="9" fill="url(#t-opus)" opacity="0">
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.6;0.7;0.74" dur="14s" repeatCount="indefinite"/>
+    <animateMotion dur="14s" repeatCount="indefinite" keyTimes="0;0.6;0.7;1" keyPoints="0;0;1;1" calcMode="linear">
+      <mpath href="#p-opus-arb"/>
+    </animateMotion>
+  </circle>
+  <circle r="9" fill="url(#t-gpt)" opacity="0">
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.6;0.7;0.74" dur="14s" repeatCount="indefinite"/>
+    <animateMotion dur="14s" repeatCount="indefinite" keyTimes="0;0.6;0.7;1" keyPoints="0;0;1;1" calcMode="linear">
+      <mpath href="#p-gpt-arb"/>
+    </animateMotion>
+  </circle>
+
+  <circle r="11" fill="url(#t-arb)" opacity="0">
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.83;0.95;0.99" dur="14s" repeatCount="indefinite"/>
+    <animateMotion dur="14s" repeatCount="indefinite" keyTimes="0;0.83;0.95;1" keyPoints="0;0;1;1" calcMode="linear">
+      <mpath href="#p-arb-user"/>
+    </animateMotion>
+  </circle>
+
+  <g font-family="-apple-system, Segoe UI, system-ui, sans-serif" font-size="11" fill="#9a9788">
+    <text x="450" y="612" text-anchor="middle">No API keys — built-in models authenticate through their own CLI's OAuth session. Add custom providers (CLI or HTTP API) from Settings.</text>
+  </g>
+</svg>
