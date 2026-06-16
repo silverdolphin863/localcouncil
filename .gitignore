@@ -35,6 +35,8 @@ desktop.ini
 
 # Build / temp output
 dist/
-build/
 tmp/
 .tmp/
+
+# Build directory: keep the capture scripts, drop the frame stash
+build/frames/

@@ -80,16 +80,16 @@
   <g>
     <g filter="url(#soft)">
       <circle cx="450" cy="130" r="38" fill="url(#g-arb)" opacity="0">
-        <animate attributeName="opacity" values="0;0;0;1;1;1;0;0" keyTimes="0;0.45;0.55;0.62;0.78;0.85;0.95;1" dur="14s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0;0;1;1;1;0;0" keyTimes="0;0.45;0.55;0.62;0.78;0.85;0.95;1" dur="8s" repeatCount="indefinite"/>
       </circle>
       <text x="450" y="136" text-anchor="middle" font-family="-apple-system, Segoe UI, system-ui, sans-serif" font-weight="700" font-size="14" fill="#ffffff" opacity="0">
         ARB
-        <animate attributeName="opacity" values="0;0;0;1;1;1;0;0" keyTimes="0;0.45;0.55;0.62;0.78;0.85;0.95;1" dur="14s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0;0;1;1;1;0;0" keyTimes="0;0.45;0.55;0.62;0.78;0.85;0.95;1" dur="8s" repeatCount="indefinite"/>
       </text>
     </g>
     <text x="450" y="190" text-anchor="middle" font-family="-apple-system, Segoe UI, system-ui, sans-serif" font-size="13" font-weight="600" fill="#1f2430" opacity="0">
       Arbiter
-      <animate attributeName="opacity" values="0;0;0;1;1;1;0;0" keyTimes="0;0.45;0.55;0.62;0.78;0.85;0.95;1" dur="14s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;0;1;1;1;0;0" keyTimes="0;0.45;0.55;0.62;0.78;0.85;0.95;1" dur="8s" repeatCount="indefinite"/>
     </text>
   </g>
 
@@ -136,73 +136,73 @@
   <g font-family="-apple-system, Segoe UI, system-ui, sans-serif" font-size="12" fill="#6d4ca8" font-weight="600" text-anchor="middle">
     <text x="450" y="410" opacity="0">
       1. you ask
-      <animate attributeName="opacity" values="0;1;1;0;0;0;0;0" keyTimes="0;0.05;0.2;0.27;0.3;0.7;0.95;1" dur="14s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;1;1;0;0;0;0;0" keyTimes="0;0.05;0.2;0.27;0.3;0.7;0.95;1" dur="8s" repeatCount="indefinite"/>
     </text>
     <text x="450" y="410" opacity="0">
       2. the models debate
-      <animate attributeName="opacity" values="0;0;0;0;1;1;0;0" keyTimes="0;0.27;0.3;0.31;0.34;0.55;0.62;1" dur="14s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;0;0;1;1;0;0" keyTimes="0;0.27;0.3;0.31;0.34;0.55;0.62;1" dur="8s" repeatCount="indefinite"/>
     </text>
     <text x="450" y="410" opacity="0">
       3. arbiter consolidates
-      <animate attributeName="opacity" values="0;0;0;0;0;0;1;1;0" keyTimes="0;0.55;0.6;0.61;0.62;0.625;0.63;0.85;0.95" dur="14s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;0;0;0;0;1;1;0" keyTimes="0;0.55;0.6;0.61;0.62;0.625;0.63;0.85;0.95" dur="8s" repeatCount="indefinite"/>
     </text>
     <text x="450" y="410" opacity="0">
       4. decision returns
-      <animate attributeName="opacity" values="0;0;0;0;0;0;0;0;1;1;0" keyTimes="0;0.05;0.1;0.15;0.2;0.6;0.7;0.85;0.9;0.97;1" dur="14s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;0;0;0;0;0;0;1;1;0" keyTimes="0;0.05;0.1;0.15;0.2;0.6;0.7;0.85;0.9;0.97;1" dur="8s" repeatCount="indefinite"/>
     </text>
   </g>
 
   <!-- ANIMATED MESSAGE TOKENS -->
   <circle r="9" fill="url(#t-user)" opacity="0">
-    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.02;0.18;0.22" dur="14s" repeatCount="indefinite"/>
-    <animateMotion dur="14s" repeatCount="indefinite" keyTimes="0;0.02;0.18;1" keyPoints="0;0;1;1" calcMode="linear">
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.02;0.18;0.22" dur="8s" repeatCount="indefinite"/>
+    <animateMotion dur="8s" repeatCount="indefinite" keyTimes="0;0.02;0.18;1" keyPoints="0;0;1;1" calcMode="linear">
       <mpath href="#p-user-opus"/>
     </animateMotion>
   </circle>
   <circle r="9" fill="url(#t-user)" opacity="0">
-    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.21;0.25" dur="14s" repeatCount="indefinite"/>
-    <animateMotion dur="14s" repeatCount="indefinite" keyTimes="0;0.05;0.21;1" keyPoints="0;0;1;1" calcMode="linear">
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.21;0.25" dur="8s" repeatCount="indefinite"/>
+    <animateMotion dur="8s" repeatCount="indefinite" keyTimes="0;0.05;0.21;1" keyPoints="0;0;1;1" calcMode="linear">
       <mpath href="#p-user-gpt"/>
     </animateMotion>
   </circle>
 
   <circle r="9" fill="url(#t-opus)" opacity="0">
-    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.3;0.38;0.42" dur="14s" repeatCount="indefinite"/>
-    <animateMotion dur="14s" repeatCount="indefinite" keyTimes="0;0.3;0.38;1" keyPoints="0;0;1;1" calcMode="linear">
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.3;0.38;0.42" dur="8s" repeatCount="indefinite"/>
+    <animateMotion dur="8s" repeatCount="indefinite" keyTimes="0;0.3;0.38;1" keyPoints="0;0;1;1" calcMode="linear">
       <mpath href="#p-opus-gpt"/>
     </animateMotion>
   </circle>
   <circle r="9" fill="url(#t-gpt)" opacity="0">
-    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.42;0.5;0.54" dur="14s" repeatCount="indefinite"/>
-    <animateMotion dur="14s" repeatCount="indefinite" keyTimes="0;0.42;0.5;1" keyPoints="0;0;1;1" calcMode="linear">
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.42;0.5;0.54" dur="8s" repeatCount="indefinite"/>
+    <animateMotion dur="8s" repeatCount="indefinite" keyTimes="0;0.42;0.5;1" keyPoints="0;0;1;1" calcMode="linear">
       <mpath href="#p-gpt-opus"/>
     </animateMotion>
   </circle>
 
   <!-- Cameo: a GLM token joins the debate during phase 2 -->
   <circle r="8" fill="url(#t-glm)" opacity="0">
-    <animate attributeName="opacity" values="0;0;0;0.85;0.85;0" keyTimes="0;0.34;0.36;0.42;0.5;0.54" dur="14s" repeatCount="indefinite"/>
-    <animateMotion dur="14s" repeatCount="indefinite" keyTimes="0;0.36;0.5;1" keyPoints="0;0;1;1" calcMode="linear">
+    <animate attributeName="opacity" values="0;0;0;0.85;0.85;0" keyTimes="0;0.34;0.36;0.42;0.5;0.54" dur="8s" repeatCount="indefinite"/>
+    <animateMotion dur="8s" repeatCount="indefinite" keyTimes="0;0.36;0.5;1" keyPoints="0;0;1;1" calcMode="linear">
       <mpath href="#p-glm-gpt"/>
     </animateMotion>
   </circle>
 
   <circle r="9" fill="url(#t-opus)" opacity="0">
-    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.6;0.7;0.74" dur="14s" repeatCount="indefinite"/>
-    <animateMotion dur="14s" repeatCount="indefinite" keyTimes="0;0.6;0.7;1" keyPoints="0;0;1;1" calcMode="linear">
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.6;0.7;0.74" dur="8s" repeatCount="indefinite"/>
+    <animateMotion dur="8s" repeatCount="indefinite" keyTimes="0;0.6;0.7;1" keyPoints="0;0;1;1" calcMode="linear">
       <mpath href="#p-opus-arb"/>
     </animateMotion>
   </circle>
   <circle r="9" fill="url(#t-gpt)" opacity="0">
-    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.6;0.7;0.74" dur="14s" repeatCount="indefinite"/>
-    <animateMotion dur="14s" repeatCount="indefinite" keyTimes="0;0.6;0.7;1" keyPoints="0;0;1;1" calcMode="linear">
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.6;0.7;0.74" dur="8s" repeatCount="indefinite"/>
+    <animateMotion dur="8s" repeatCount="indefinite" keyTimes="0;0.6;0.7;1" keyPoints="0;0;1;1" calcMode="linear">
       <mpath href="#p-gpt-arb"/>
     </animateMotion>
   </circle>
 
   <circle r="11" fill="url(#t-arb)" opacity="0">
-    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.83;0.95;0.99" dur="14s" repeatCount="indefinite"/>
-    <animateMotion dur="14s" repeatCount="indefinite" keyTimes="0;0.83;0.95;1" keyPoints="0;0;1;1" calcMode="linear">
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.83;0.95;0.99" dur="8s" repeatCount="indefinite"/>
+    <animateMotion dur="8s" repeatCount="indefinite" keyTimes="0;0.83;0.95;1" keyPoints="0;0;1;1" calcMode="linear">
       <mpath href="#p-arb-user"/>
     </animateMotion>
   </circle>
