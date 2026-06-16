@@ -14,7 +14,7 @@ const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
 const FFMPEG = 'ffmpeg';
 
 const FPS = 15;
-const SECONDS = 8;
+const SECONDS = 12;
 const FRAMES = FPS * SECONDS;
 
 if (!existsSync(FRAMES_DIR)) mkdirSync(FRAMES_DIR, { recursive: true });
@@ -32,7 +32,7 @@ for (let i = 0; i < FRAMES; i++) {
     '--no-sandbox',
     '--hide-scrollbars',
     `--screenshot=${out}`,
-    '--window-size=1600,1138',
+    '--window-size=1280,720',
     `--virtual-time-budget=${budgetMs}`,
     HOST_HTML,
   ], { stdio: ['ignore', 'ignore', 'ignore'] });
@@ -51,7 +51,7 @@ const ffArgs = [
   '-i', join(FRAMES_DIR, 'f-%04d.png'),
   '-c:v', 'libx264',
   '-pix_fmt', 'yuv420p',
-  '-vf', 'scale=1280:-2,pad=1280:910:(ow-iw)/2:(oh-ih)/2:color=0xfbfaf6',
+  '-vf', 'scale=1280:720',
   '-movflags', '+faststart',
   '-loop', '0',
   mp4Out,
