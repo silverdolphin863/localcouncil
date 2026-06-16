@@ -14,7 +14,7 @@ const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
 const FFMPEG = 'ffmpeg';
 
 const FPS = 15;
-const SECONDS = 12;
+const SECONDS = 10;
 const FRAMES = FPS * SECONDS;
 
 if (!existsSync(FRAMES_DIR)) mkdirSync(FRAMES_DIR, { recursive: true });
@@ -31,6 +31,11 @@ for (let i = 0; i < FRAMES; i++) {
     '--disable-gpu',
     '--no-sandbox',
     '--hide-scrollbars',
+    // Pin font rendering between frames to avoid subpixel flicker when
+    // each frame is captured in a fresh Chrome process.
+    '--font-render-hinting=none',
+    '--disable-font-subpixel-positioning',
+    '--disable-lcd-text',
     `--screenshot=${out}`,
     '--window-size=1280,720',
     `--virtual-time-budget=${budgetMs}`,
@@ -51,7 +56,9 @@ const ffArgs = [
   '-i', join(FRAMES_DIR, 'f-%04d.png'),
   '-c:v', 'libx264',
   '-pix_fmt', 'yuv420p',
-  '-vf', 'scale=1280:720',
+  // Hold the final frame for 2 seconds so viewers can read the arbiter
+  // card before the loop snaps back to the empty chat.
+  '-vf', 'scale=1280:720,tpad=stop_mode=clone:stop_duration=2',
   '-movflags', '+faststart',
   '-loop', '0',
   mp4Out,
@@ -66,7 +73,7 @@ const gifArgs = [
   '-y',
   '-framerate', String(FPS),
   '-i', join(FRAMES_DIR, 'f-%04d.png'),
-  '-vf', 'scale=900:-2:flags=lanczos,split[s0][s1];[s0]palettegen=max_colors=128[p];[s1][p]paletteuse=dither=sierra2_4a',
+  '-vf', 'tpad=stop_mode=clone:stop_duration=2,scale=900:-2:flags=lanczos,split[s0][s1];[s0]palettegen=max_colors=128[p];[s1][p]paletteuse=dither=sierra2_4a',
   '-loop', '0',
   gifOut,
 ];

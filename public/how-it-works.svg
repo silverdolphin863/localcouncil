@@ -43,9 +43,9 @@
   <!-- MESSAGE 1: User asks (appears at t=0.5s of 12s cycle) -->
   <g opacity="0" font-family="-apple-system, Segoe UI, system-ui, sans-serif">
     <animate attributeName="opacity"
-             values="0;0;1;1;0;0"
-             keyTimes="0;0.04;0.07;0.96;0.98;1"
-             dur="12s" repeatCount="indefinite"/>
+             values="0;0;1;1"
+             keyTimes="0;0.05;0.10;1"
+             dur="10s" fill="freeze"/>
     <g transform="translate(120,128)">
       <circle cx="22" cy="22" r="22" fill="url(#av-user)"/>
       <circle cx="22" cy="16" r="6" fill="#ffffff"/>
@@ -59,9 +59,9 @@
   <!-- MESSAGE 2: Opus replies (appears at t=2.5s) -->
   <g opacity="0" font-family="-apple-system, Segoe UI, system-ui, sans-serif">
     <animate attributeName="opacity"
-             values="0;0;1;1;0;0"
-             keyTimes="0;0.20;0.23;0.96;0.98;1"
-             dur="12s" repeatCount="indefinite"/>
+             values="0;0;1;1"
+             keyTimes="0;0.20;0.25;1"
+             dur="10s" fill="freeze"/>
     <g transform="translate(120,208)">
       <circle cx="22" cy="22" r="22" fill="url(#av-opus)"/>
       <text x="22" y="28" text-anchor="middle" font-weight="700" font-size="16" fill="#ffffff">A\</text>
@@ -75,9 +75,9 @@
   <!-- MESSAGE 3: GPT pushes back (appears at t=5.0s) -->
   <g opacity="0" font-family="-apple-system, Segoe UI, system-ui, sans-serif">
     <animate attributeName="opacity"
-             values="0;0;1;1;0;0"
-             keyTimes="0;0.41;0.44;0.96;0.98;1"
-             dur="12s" repeatCount="indefinite"/>
+             values="0;0;1;1"
+             keyTimes="0;0.40;0.45;1"
+             dur="10s" fill="freeze"/>
     <g transform="translate(120,308)">
       <circle cx="22" cy="22" r="22" fill="url(#av-gpt)"/>
       <circle cx="22" cy="22" r="9" fill="none" stroke="#ffffff" stroke-width="2.5"/>
@@ -93,9 +93,9 @@
   <!-- MESSAGE 4: Opus concedes (appears at t=7.5s) -->
   <g opacity="0" font-family="-apple-system, Segoe UI, system-ui, sans-serif">
     <animate attributeName="opacity"
-             values="0;0;1;1;0;0"
-             keyTimes="0;0.62;0.65;0.96;0.98;1"
-             dur="12s" repeatCount="indefinite"/>
+             values="0;0;1;1"
+             keyTimes="0;0.60;0.65;1"
+             dur="10s" fill="freeze"/>
     <g transform="translate(120,428)">
       <circle cx="22" cy="22" r="22" fill="url(#av-opus)"/>
       <text x="22" y="28" text-anchor="middle" font-weight="700" font-size="16" fill="#ffffff">A\</text>
@@ -108,9 +108,9 @@
   <!-- MESSAGE 5: Arbiter card (appears at t=9.0s) -->
   <g opacity="0" font-family="-apple-system, Segoe UI, system-ui, sans-serif">
     <animate attributeName="opacity"
-             values="0;0;1;1;0;0"
-             keyTimes="0;0.75;0.78;0.96;0.98;1"
-             dur="12s" repeatCount="indefinite"/>
+             values="0;0;1;1"
+             keyTimes="0;0.75;0.80;1"
+             dur="10s" fill="freeze"/>
     <g transform="translate(120,498)">
       <!-- arbiter card background -->
       <rect x="0" y="0" width="1040" height="170" rx="14" fill="#f5f0ff" stroke="#d6c5f0" stroke-width="1.5"/>
