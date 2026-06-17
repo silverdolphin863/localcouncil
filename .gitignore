@@ -38,5 +38,8 @@ dist/
 tmp/
 .tmp/
 
-# Build directory: keep the capture scripts, drop the frame stash
+# Build directory: keep the capture scripts, drop the frame stash and
+# any intermediate raw captures that get cropped into final assets.
 build/frames/
+build/*-raw.png
+build/social.html
